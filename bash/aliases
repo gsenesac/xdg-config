@@ -1,0 +1,12 @@
+#!/bin/bash
+
+alias ls='ls --color'
+alias ll='ls -al'
+alias vi='nvim'
+
+alias path='echo -e ${PATH//:/\\n}'
+
+alias ..='cd ..'
+
+alias tmls='tmux list-session'
+alias tma='tmux attach -t'

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export VISUAL='nvim'
+export GIT_EDITOR='nvim'
