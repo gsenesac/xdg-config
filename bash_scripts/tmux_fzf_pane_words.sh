@@ -16,16 +16,16 @@ fi
 # ▼ (u25bc)
 
 # ┌─ Grab tmux pane contents
-# │                    ┌─ Remove active line
-# │                    │            ┌─ Make each word an option
-# │                    │            │             ┌─ Dedup whitespace
-# │                    │            │             │                   ┌─ Sort (to allow for uniq)
-# │                    │            │             │                   │      ┌─ Only allow unique opts
-# ▼                    ▼            ▼             ▼                   ▼      ▼ 
-tmux capture-pane -p | head -n -1 | tr ' ' '\n' | tr -s "[:space:]" | sort | uniq > $tf
+# │                     ┌─ Remove active line
+# │                     │            ┌─ Make each word an option
+# │                     │            │             ┌─ Dedup whitespace
+# │                     │            │             │                   ┌─ Sort (to allow for uniq)
+# │                     │            │             │                   │      ┌─ Only allow unique opts
+# ▼                     ▼            ▼             ▼                   ▼      ▼ 
+tmux capture-pane -Jp | head -n -1 | tr ' ' '\n' | tr -s "[:space:]" | sort | uniq > $tf
 
-# Pass words to fzf
-choice=$(cat $tf | fzf)
+# Pass long words to fzf
+choice=$(cat $tf | grep -E '[a-zA-Z0-9_/]{6,}' | fzf)
 
 # Send choice to pane
 tmux send-keys "$choice"

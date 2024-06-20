@@ -31,11 +31,16 @@ vim.keymap.set("v", "<leader>d", "\"_d")
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 
+-- Populate register with <current_file>:<current_lineno>
+vim.keymap.set("n", "<leader>l", ":let @l = @% .. ':' .. line('.')<CR>" )
+
+-- Send command to tmux sess/win/pane
+--vim.keymap.set("n", "<leader>s", "\"syy:! tmux send-keys -t test:1.0 ' <C-r>s ' Enter<CR>", {silent = true} )
+--
+local options = { noremap = true, silent = true }
+
 -- Quickly bring up neovim config dir
-vim.api.nvim_set_keymap('n', '<leader>ec', ':Ex ~/.config/nvim<CR>', { noremap = true, silent = true })
-
-local options = { noremap = true }
-
+vim.api.nvim_set_keymap('n', '<leader>ec', ':Ex ~/.config/nvim/lua/gordo<CR>', options )
 
 -- Reselect pasted text
 -- Similar: gv is reselect last visual selection

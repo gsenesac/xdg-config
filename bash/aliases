@@ -10,3 +10,7 @@ alias ..='cd ..'
 
 alias tmls='tmux list-session'
 alias tma='tmux attach -t'
+
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gs="git status"

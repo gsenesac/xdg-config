@@ -40,11 +40,25 @@ function multiline_prompt() {
     unset color_prompt force_color_prompt
 }
 
+bind 'set bell-style visible'
+
+function bell() {
+    "$@"
+    tput bel
+}
+
 multiline_prompt
 
 __tmux_sessionizer__() {
 	$(~/.config/bash_scripts/tmux_sessionizer.sh > /dev/null)
 }
 
-bind -m emacs-standard -x '"\C-f": __tmux_sessionizer__'
+__options__() {
+    selected="$(cat ~/.config/bash_scripts/options.txt | fzf)"
+    READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}${selected}${READLINE_LINE:$READLINE_POINT}"
+    READLINE_POINT=$(( READLINE_POINT + ${#selected} ))
+}
 
+bind -m emacs-standard -x '"\C-f": __tmux_sessionizer__'
+bind -x '"\C-gt":__options__'
+bind '"\C-gd":"\C-u$(date +%Y%m%d%H%M)\e\C-e\C-a\C-y\C-e"'
