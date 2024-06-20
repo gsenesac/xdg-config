@@ -30,13 +30,8 @@ function multiline_prompt() {
     else
         MODLINE="(\u@\h)-[\[\w\]]\`parse_git_branch\`"
     fi
-    #if [ "$1" = "kali" ]; then
-    export PS1="┌──$MODLINE
-└─\$ "
-#    else
-#        export PS1="$MODLINE
-#\$ "
-#    fi
+    export PS1="$MODLINE
+\$ "
     unset color_prompt force_color_prompt
 }
 
