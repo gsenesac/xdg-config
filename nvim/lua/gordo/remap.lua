@@ -45,3 +45,5 @@ vim.api.nvim_set_keymap('n', '<leader>ec', ':Ex ~/.config/nvim/lua/gordo<CR>', o
 -- Reselect pasted text
 -- Similar: gv is reselect last visual selection
 vim.keymap.set( "n", "gp", "`[v`]", options )
+
+vim.keymap.set( "n", "<leader>tl", ":.w !tmux loadb -<CR><CR>", options )
